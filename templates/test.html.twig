@@ -1,0 +1,33 @@
+//on crée une "nouvelle réservation"
+        $reservation = new Reservations();
+        // on crée le formulaire de réservation
+        $reservationForm = $this->createForm(ReservationFormType::class,$reservation);
+        
+        // on traite la requete du formulaire
+        $reservationForm->handleRequest($request);
+
+        //on récupere l'heure de réservation choisie
+        $date = $reservationForm->get('created_at')->getData();
+
+        // on vérifie si le formulaire est soumis et valide
+        if($reservationForm->isSubmitted() && $reservationForm->isValid()){
+        //on definit la réference de la réservation
+        $reservation->setReference(uniqid());
+        //on ajoute l'utilisateur courant
+        $reservation->addUser($this->getUser());
+        //On definit l'heure
+        $reservation->setCreatedAt($date);
+
+        //on definite le prix
+        $reservation->setPrice($reservation->getPrice());
+        
+        // message de success
+        $this->addFlash('success','Reservation effectué avec succes');
+
+
+        $em->persist($reservation);
+       
+
+
+        // On redirige vers le menu
+        return $this->redirectToRoute('profile_index');

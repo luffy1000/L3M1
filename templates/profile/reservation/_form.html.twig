@@ -1,0 +1,9 @@
+ {{ form_start(reservationForm,{action:path('profile_reservation_recapitulatif')}) }}
+    {{ form_row(reservationForm.created_at) }}
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn m-3" style="background-color:#1A237E" ><p style="height:7px" class="text-white">{{ button_label|default('Reserver') }}</p></button>
+      </div>
+    </div>
+   
+{{ form_end(reservationForm) }}

@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des reservations{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Liste des reservations</h1>
+                <table class="table">
+                    {% include "_partials/_flash.html.twig" %}
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Reference</th>
+                            <th>Heure</th>
+                            <th>Etudiant</th>
+                            <th>Instructeur</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reservation in reservations %}
+                            <tr>
+                                <td>{{ reservation.id }}</td>
+                                <td>{{ reservation.reference }}</td>
+                                 <td>{{ reservation.getcreatedAt()|date('d-m-Y H:i:s') }}</td>
+                                <td>
+                                {% for user in reservation.users %}
+                                   {% for role in user.roles  %}
+                                     {% if role=="ROLE_ETUDIANT" %}
+                                       {{ user.nom }}
+                                     {% endif %}
+                                   {% endfor %}
+                                {% endfor %}
+                                </td>
+                                <td>
+                                {% if reservation.isAssign == false %}
+                                     <a href="{{ path('admin_assignation_form', {reference: reservation.reference})}}" class="btn btn-warning">Assigner un instructeur</a>
+                                     {% else %}
+                                     {% for user in reservation.users %}
+                                   {% for role in user.roles  %}
+                                     {% if role=="ROLE_INSTRUCTEUR" %}
+                                       {{ user.nom }}
+                                     {% endif %}
+                                   {% endfor %}
+                                {% endfor %}
+                                {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

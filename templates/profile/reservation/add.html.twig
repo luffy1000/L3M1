@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Faire une réservation {% endblock %}
+
+{% block body %}
+   <div class="container">
+      <div class="row">
+         {% include "_partials/_userprofilnav.html.twig" %}
+         <main class="col-9 border border-light bg-white p-4">
+            <h1>Faire une réservation</h1>
+        <a href class="btn btn-primary m-3"> Prix de reservation :30 EUR</a>
+            {% include('profile/reservation/_form.html.twig') %}
+         </main>
+      </div>
+   </div>
+{% endblock %} 

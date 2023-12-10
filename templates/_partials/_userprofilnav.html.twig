@@ -1,0 +1,35 @@
+<aside class="col-3 border border-light bg-white mt-4">
+
+
+	<article class="card mb-3">
+
+
+		{% if  is_granted('ROLE_ETUDIANT') %}
+			{% if  app.user.isVerified is same as true %}
+				<div class="card-header text-white" style="background-color:#1A237E">
+					<p class="text-white">
+						<a class="text-white" href="{{path('profile_reservation_ajout')}}">Faire une reservation</a>
+					</p>
+					<p>
+						<a class="text-white" href="{{ path('profile_reservation_index') }}">Historique de mes reservations</a>
+					</p>
+				</div>
+			{% endif %}
+		{% endif %}
+		{% if not is_granted('ROLE_ETUDIANT') %}
+			{% if  app.user.isVerified is same as true %}
+				<div class="card-header text-white" style="background-color:#1A237E">
+					<p class="text-white">
+						<a class="text-white" href="{{path('profile_reservation_instructor')}}">Mes cours</a>
+					</p>
+				</div>
+			{% endif %}
+		{% endif %}
+		<div class="card-header text-white " style="background-color:#1A237E">
+			<p>
+				<a class="text-white" href="{{ path('forgotten_password') }}">Changer  de mot de passe</a>
+			</p>
+		</div>
+	</article>
+
+</aside>

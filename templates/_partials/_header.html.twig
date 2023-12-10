@@ -1,0 +1,68 @@
+<!-- Navbar -->
+<nav
+	class="navbar navbar-expand-lg navbar-light bg-light">
+	<!-- Container wrapper -->
+	<div
+		class="container">
+		<!-- Navbar brand -->
+		
+
+		<!-- Toggle button -->
+		<button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fas fa-bars"></i>
+		</button>
+
+		<!-- Collapsible wrapper -->
+		<div
+			class="collapse navbar-collapse" id="navbarButtonsExample">
+			<!-- Left links -->
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Service</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#whychooseus">Why chosse us?</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="#">FAQ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Contact</a>
+				</li>
+			</ul>
+			<!-- Left links -->
+
+
+			{% if app.user %}
+				<div class="d-flex align-items-center">
+					<a href={{ path('app_logout') }} type="button" class="btn text-white me-3" style="background-color:#1A237E">
+						Deconnexion
+					</a>
+
+					<a href={{ path('profile_index') }} type="button" class="btn text-white me-3" style="background-color:#1A237E">
+						profile
+					</a>
+
+
+					
+				{% else %}
+					<a href={{ path('app_login') }} type="button" class="btn text-white me-3" style="background-color:#1A237E">
+						Connexion
+					</a>
+					
+						<a href={{ path('app_register') }} type="button" class="btn text-white me-3" style="background-color:#1A237E">
+							S'inscrire
+						</a>
+					{% endif %}
+
+				
+			</div>
+			<!-- Collapsible wrapper -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->

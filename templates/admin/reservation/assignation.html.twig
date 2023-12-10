@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Assigner un instructeur{% endblock %}
+
+{% block body %}
+   <div class="container">
+      <div class="row">
+         {% include "_partials/_adminnav.html.twig" %}
+         <main class="col-9 border border-light bg-white p-4">
+            <h1>Assigner un instructeur</h1>
+            {{ form_start(assignationform) }}
+    {{ form_row(assignationform.users) }}
+    <button type="submit" class="btn m-3" style="background-color:#1A237E" ><p style="height:7px" class="text-white">{{ button_label|default('Assigner') }}</p></button>
+{{ form_end(assignationform) }}
+         </main>
+      </div>
+   </div>
+{% endblock %} 
+
+
+
+
