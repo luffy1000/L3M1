@@ -38,7 +38,7 @@ class Reservations
     #[ORM\Column]
     private ?bool $isPaid = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?bool $isAssign = null;
 
     
